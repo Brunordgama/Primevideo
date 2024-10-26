@@ -3,17 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>netflix</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Pedido de Namoro</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f8ff;
+            font-family: Arial, sans-serif;
+            position: relative; /* Para permitir o posicionamento absoluto dos botões */
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            position: relative; /* Necessário para o movimento */
+        }
+        #response {
+            margin-top: 20px;
+            font-size: 24px;
+            color: #ff4500;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Ana Carolina Faria Cardoso</h1>
-        <h2>Quer namorar comigo?</h2>
-        <button id="yes-btn">Sim!</button>
-        <button id="no-btn">Não</button>
-        <div id="response" class="hidden"></div>
-    </div>
-    <script src="script.js"></script>
+
+<h1>Você aceita namorar comigo?</h1>
+<button id="yes-btn">Sim</button>
+<button id="no-btn">Não</button>
+<div id="response" class="hidden"></div>
+
+<script>
+    document.getElementById('yes-btn').addEventListener('click', function() {
+        document.getElementById('response').innerText = '❤️';
+        document.getElementById('response').classList.remove('hidden');
+
+        setTimeout(() => {
+            window.location.href = 'https://www.youtube.com/watch?v=e-fA-gBCkj0'; // Seu link
+        }, 2000);
+    });
+
+    document.getElementById('no-btn').addEventListener('click', function() {
+        document.getElementById('response').innerText = 'Sua chata não gosto de você!😛';
+        document.getElementById('response').classList.remove('hidden');
+        fuja(); // Move o botão "não"
+    });
+
+    function fuja() {
+        var botaoNao = document.getElementById("no-btn");
+
+        var larguraJanela = window.innerWidth;
+        var alturaJanela = window.innerHeight;
+
+        var maxX = larguraJanela - botaoNao.offsetWidth;
+        var maxY = alturaJanela - botaoNao.offsetHeight;
+
+        var aleatorioX = Math.floor(Math.random() * maxX);
+        var aleatorioY = Math.floor(Math.random() * maxY);
+
+        botaoNao.style.position = "absolute"; // Para mover o botão
+        botaoNao.style.left = aleatorioX + "px";
+        botaoNao.style.top = aleatorioY + "px";
+    }
+</script>
+
 </body>
 </html>
